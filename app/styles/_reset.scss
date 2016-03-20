@@ -1,0 +1,365 @@
+/**
+ * Description: HTML5 reset/normalize
+ * Version: 0.9.0
+ * Last update: 2015/10/20
+ * Dependencies: none
+ *
+ * Summary:
+ *  Mainly ripped from :: https://github.com/murtaugh/HTML5-Reset
+ *  Eric Meyer         :: http://meyerweb.com
+ *  HTML5 Doctor       :: http://html5doctor.com
+ *  HTML5 Boilerplate  :: http://html5boilerplate.com
+ *  Also "A more considered reset; more of a restart...":
+ *  CSSWizardry        :: http://csswizardry.com/2011/10/reset-restarted/
+ *
+ *  0. BASE RULES
+ *    0.1 BOX MODEL
+ *    0.2 HTML5 DISPLAY DEFINITIONS
+ *  1. BASE RESET
+ *    1.1 HTML RESET
+ *    1.2 ELEMENT RESET
+ *  2. CURSORS
+ *  3. BLOCK-LEVEL ELEMENTS
+ *  4. INLINE ELEMENTS
+ *  5. QUOTES
+ *  6. TABLES
+ *
+ *
+ *  TODO: this should be under constant review,
+ *        it is a reset,
+ *        so by its very nature it should be under constant review.
+ *        Merge in most up-to-date & relevent normalize.css rules.
+ *
+ */
+
+/* ==========================================================================
+   0. BASE RULES
+   ========================================================================== */
+
+/* 0.1 BOX MODEL
+   ========================================================================== */
+/*
+ * Handle box-sizing while better addressing child elements:
+ * http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
+
+/* 0.2 HTML5 DISPLAY DEFINITIONS
+   ========================================================================== */
+article,
+aside,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+picture,
+section,
+details,
+summary {
+  display: block;
+}
+
+
+/* ==========================================================================
+   1. BASE RESET
+   ========================================================================== */
+
+/* 1.1 HTML RESET
+   ========================================================================== */
+
+html {
+  /* Force scrollbars to prevent jump when navihating to pages with less content */
+  overflow-y: scroll;
+
+  margin: 0;
+  padding: 0;
+  /* Prevent text size adjusting after orientation change: */
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  /* Always ensure the HTML element fills the full height */
+  min-height: 100%;
+}
+
+body {
+  /*
+   * Make sure any fashionable slidy things don't disappear off anywhere;
+   * ensures safe use of absolute positioning.
+   */
+  position: relative;
+}
+
+/* 1.2 ELEMENT RESET
+   ========================================================================== */
+/*
+ * ...then same rules + font inheritance rules for all
+ * remaining elements. Anythin set to inherit CANNOT be
+ * set on the html tag - as the root, it inherits from nothing.
+ */
+
+body,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+caption,
+cite,
+code,
+del,
+dfn,
+em,
+ins,
+kbd,
+q,
+samp,
+var,
+small,
+strong,
+sub,
+sup,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+input,
+label,
+select,
+button,
+textarea,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+time,
+mark,
+details,
+summary
+img,
+audio,
+video {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+
+  margin: 0;
+  padding: 0;
+
+  letter-spacing: normal;
+
+  border: 0;
+
+  text-rendering: auto;
+}
+
+/* ==========================================================================
+   2. CURSORS
+   ========================================================================== */
+/*
+ * Reset default cursor: https://gist.github.com/murtaugh/5247154.
+ */
+html,
+body {
+  cursor: default;
+}
+
+code {
+  cursor: text;
+}
+
+/*
+ * Textarea and input[type="text"] already receive
+ * "cursor: text" via browsers' base stylesheets.
+ */
+a,
+label,
+button,
+input[type='button'],
+input[type='radio'],
+input[type='submit'],
+input[type='checkbox'],
+input[type=file] {
+  cursor: pointer;
+}
+
+button[disabled],
+input[disabled] {
+  cursor: default;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+/* ==========================================================================
+   3. BLOCK-LEVEL ELEMENTS
+   ========================================================================== */
+
+/* Remove bullets from <ul>s */
+ul,
+menu {
+  list-style-type: none;
+}
+
+/*
+ * All padding stripped with initial hard reset;
+ * return default padding-left specifically for <ol>.
+ * NOTE simply setting list-style-postion:inside causes
+ * and ugly wrapping of the text.
+ */
+ol {
+  padding-left: 30px;
+}
+
+/* ==========================================================================
+   4. INLINE ELEMENTS
+   ========================================================================== */
+
+em,
+i,
+cite,
+q,
+address,
+dfn,
+var {
+  font-weight: inherit;
+  font-style: italic;
+}
+
+strong,
+b,
+dt {
+  font-weight: bold;
+  font-style: inherit;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+  cursor: help;
+
+  border-bottom: 1px dotted #000;
+}
+
+/*
+ * Make sure sup and sub don't mess with line-heights
+ * http://gist.github.com/413930
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+
+  position: relative;
+}
+
+sup {
+  top: 0;
+}
+
+sub {
+  bottom: -.15em;
+}
+
+/* ==========================================================================
+   5. QUOTES
+   ========================================================================== */
+/*
+ * Stop browsers automatically inserting quotation marks.
+ */
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote {
+  &:before,
+  &:after {
+    content: '';
+    content: none;
+  }
+}
+
+q {
+  &:before,
+  &:after {
+    content: '';
+    content: none;
+  }
+}
+
+
+/* ==========================================================================
+   6. TABLES
+   ========================================================================== */
+
+
+/* NOTE Tables still need cellspacing="0" in the markup. */
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th {
+  vertical-align: bottom;
+}
+
+td {
+  vertical-align: top;
+  img {
+    vertical-align: top;
+  }
+}
+
+caption {
+  text-align: left;
+}

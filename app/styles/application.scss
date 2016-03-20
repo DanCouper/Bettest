@@ -1,0 +1,16 @@
+@import "reset";
+@import "variables";
+
+body {
+  font-family: -apple-system, system, sans-serif;
+}
+
+#app {
+  // background-color: $brand-colour;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
