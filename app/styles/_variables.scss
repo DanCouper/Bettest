@@ -1,3 +1,31 @@
-$base-bg: white;
-$base-colour: black;
+
+
 $brand-colour: #DB0D17;
+$contrast-colour-1: #088980;
+$contrast-colour-2: #DF680D;
+$contrast-colour-3: #1BB70B;
+
+// Greyscale Ladder
+$black:       mix(#000000, $brand-colour, 80%);
+$darkestgrey: mix(#1a1a1a, $brand-colour, 80%);
+$darkergrey:  mix(#262626, $brand-colour, 80%);
+$darkgrey:    mix(#333333, $brand-colour, 90%);
+$grey:        mix(#5c5c5c, $brand-colour, 90%);
+$lightgrey:   mix(#858585, $brand-colour, 90%);
+$lightergrey: mix(#adadad, $brand-colour, 95%);
+$lightestgrey:mix(#d6d6d6, $brand-colour, 95%);
+$white:       mix(#ffffff, $brand-colour, 95%);
+
+// Base font sizing
+$base-font-size: 1rem;
+$base-line-height: 1.5;
+$base-measure: $base-font-size * $base-line-height;
+// Extra font sizing
+$small-font-size: .85rem;
+$tiny-font-size: .75rem;
+// All indentation - padding, margins, etc
+$indent-small: $base-measure / 4;
+$indent: $base-measure / 2;
+$indent-large: $base-measure;
+
+$width-wide: 990px;

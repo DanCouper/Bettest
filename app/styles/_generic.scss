@@ -1,0 +1,33 @@
+.btn {
+  background-color: $darkgrey;
+  box-shadow: 0;
+  color: rgba($white, .9);
+  font-size: $tiny-font-size;
+  letter-spacing: .1em;
+  outline: 0;
+  padding: .5rem 1rem;
+  text-transform: uppercase;
+  @include focus-style {
+    background-color: $black;
+  }
+}
+
+
+.btn--request {
+  background-color: $contrast-colour-1;
+  @include focus-style {
+    background-color: darken($contrast-colour-1, 10%);
+  }
+}
+
+// .btn--cancel {
+//   background-color: $contrast-colour-2;
+// }
+
+
+.btn__group {
+  display: flex;
+  .btn {
+    flex: 1;
+  }
+}

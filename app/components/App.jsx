@@ -5,10 +5,10 @@ import SlipContainer from '../containers/SlipContainer'
 export default class App extends React.Component {
   render() {
     return (
-      <section className="betting-area">
+      <main className="betting-app__main">
         <BetsContainer />
         <SlipContainer />
-      </section>
+      </main>
     )
   }
 }

@@ -1,16 +1,117 @@
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,400italic,700,700italic);
 @import "reset";
 @import "variables";
+@import "mixins";
+@import "generic";
 
 body {
-  font-family: -apple-system, system, sans-serif;
+  font-family: 'Fira Sans', -apple-system, system, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: $darkgrey;
 }
 
-#app {
-  // background-color: $brand-colour;
+#root {
+  align-items: center;
+  background:
+    linear-gradient(160deg, rgba($white, .5) 0, rgba($darkgrey, .35) 100%),
+    linear-gradient(90deg, $white 50%, $brand-colour 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-height: 100vh;
   width: 100vw;
+}
+
+.betting-app__main {
+  border-radius: .25rem;
+  box-shadow: 10px 10px 10px 0 rgba($darkergrey, .5);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 30rem;
+  overflow: hidden;
+  width: 80%;
+}
+
+.betting-app__main-section {
+  background: linear-gradient(160deg, rgba($white, .5) 0, rgba($darkgrey, .35) 100%);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.betting-app__bets {
+  background-color: $brand-colour;
+}
+
+.betting-app__slip {
+  background-color: $white;
+}
+
+.bets {
+  flex: 1;
+}
+
+.bet__loader {
+  margin: .5rem;
+  width: 100%;
+  height: 100%;
+}
+
+.bet__controls {
+  display: flex;
+  width: 100%;
+}
+
+.bet__control {
+  flex: 1;
+}
+
+.bet {
+  background-color: rgba($white, .9);
+  // border: 1px solid $brand-colour;
+  border-radius: .25rem;
+  box-shadow: 5px 5px 5px 0 rgba($black, .15);
+  margin: .5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.bet__text,
+.bet::after {
+  padding: 1rem;
+}
+
+.bet--available {
+  transition: all 350ms;
+  font-style: italic;
+  &::after {
+    background-color: $brand-colour;
+    color: $white;
+    content: "Bet!";
+    font-weight: 400;
+    mix-blend-mode: multiply;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100.1%; // slight jankiness
+    width: 100%;
+    transform: translateX(-100%);
+    transition: all 600ms;
+    text-align: right;
+  }
+  &:active,
+  &:focus,
+  &:hover {
+    &::after {
+      transform: translateX(0);
+      transition: all 600ms;
+    }
+  }
+}
+
+.bet__reminder {
+  font-size: $small-font-size;
+  font-style: normal;
+  opacity: .5;
 }
 

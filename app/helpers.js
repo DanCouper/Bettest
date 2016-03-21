@@ -16,3 +16,10 @@ export function checkStatus(response) {
 export function parseJSON(response) {
   return response.json()
 }
+
+/* Calculate a payout based on fractional odds.
+ * NOTE: yes, the Number coercion is awful. */
+export function payoutCalculator(stake, numerator, denominator) {
+  const calc = ((Number(numerator) / Number(denominator)) * Number(stake)) + Number(stake)
+  return calc.toFixed(2)
+}
