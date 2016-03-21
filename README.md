@@ -4,17 +4,12 @@ This is a small React app that allows a user to view available bets, add possibl
 
 ## Notes *re* brief
 
-Error handling is nonexistant at the minute: the responses are there, but I ran out of time. There is no validation on the inputs, so any old crap can be submitted.
-
-Re submitting a bet: I changed the logic and data structure to allow a number of bets to be submitted (one by one) at once. So each bet needs the `set stake` button to be pressed so that the stake is actually written into the state. Note triggering `onBlur` on an input will automatically write the value to the state.
-
-Changing the logic caused the submission logic to fail; I was halfway through rewiriting and had to stop due to time constraints - it should iterate throught the bets on the slip and submit them one after the other, but it doesn't.
-
-Getting a `null` response body from successful POST requests from the server; can't get a usable response, which means the bet history is unavailable.
-
-
 ### TODO
 
+* Error handling is utterly primitive at the minute, and nonexistant for POST errors, the latter due to...
+* ...the fact I cannot get a response object that matches the described JSON receipt, only `null`, which renders that part of the app (the history of posted bets) useless. Note that posting a bet results in **one** successful response, because...
+* ...I changed the structure to add the ability to post the bets all at once. However, this requires an extra piece of logic that I didn't have time to add in: there needs to be a sequence of `fetch` POSTs within the `postBets()` action, which would ideally leverage either a spawned generator or `async` with `Promise.all`.
+* Also, the `POST_BETS_SUCCESS` action type is not triggering a removal of the specified bet from the slip. This is a simple fix I think, but don't have time to debug ATM.
 * Review markup & CSS class naming.
 * Redo design as responsive.
 * Add React `CSSTransitionGroup` helpers to allow transitions when state updated.
@@ -39,6 +34,8 @@ Getting a `null` response body from successful POST requests from the server; ca
 1. `bets`: An immutable Map (keyed by `bet_id`) of available bets.
 2. `slipbets`: An immutable Map (keyed by `bet_id`) of bets on the slip. These bets have extra properties (`stake`, `payout`) mapped to them when cloned from **1**. Isolates the slip from the list of bets, ensuring stakes can be set & submitted (or the bets removed from the slip) without having any effect on the rest of the app.
 3. `fractionalOdds`: A boolean which decides whether odds should be viewed as fractional or decimal.
+4. `status`: a Map of various statuses, all booleans, used to conditionally show things in the views. *Incomplete, only includes the loading statuses*.
+5. `postedBets`: this *should* be a Map of the collected JSON receipts returned from POST requests. It currently is not, see the **TODO** above.
 
 ## Installation
 
