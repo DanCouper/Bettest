@@ -18,8 +18,17 @@ export function parseJSON(response) {
 }
 
 /* Calculate a payout based on fractional odds.
- * NOTE: yes, the Number coercion is awful. */
+ * NOTE: the stake comes via an input; it needs to be coerced to a number. */
 export function payoutCalculator(stake, numerator, denominator) {
-  const calc = ((Number(numerator) / Number(denominator)) * Number(stake)) + Number(stake)
+  const calc = ((numerator / denominator) * Number(stake)) + Number(stake)
   return calc.toFixed(2)
+}
+
+
+export function oddsFormatter(format, numerator, denominator) {
+  return new Map([
+    ['FRACTIONAL', `${numerator}-${denominator}`],
+    /* NOTE: the `number` wrapping the calculation is to remove trailing zeroes */
+    ['DECIMAL', `${Number((numerator / denominator + 1).toFixed(2))}`]
+  ]).get(format)
 }

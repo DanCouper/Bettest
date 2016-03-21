@@ -11,6 +11,10 @@ body {
   color: $darkgrey;
 }
 
+/**
+ * Root app element. Entirity of actual app sits in a node inside this:
+ * declarations allow this node to sit centrally on the page.
+ */
 #root {
   align-items: center;
   background:
@@ -23,15 +27,29 @@ body {
   width: 100vw;
 }
 
-.betting-app__main {
+/**
+ * Main app node. Contains options nav + two subsections (the available bets and the slip)
+ */
+.betting-app__main__wrapper {
   border-radius: .25rem;
   box-shadow: 10px 10px 10px 0 rgba($darkergrey, .5);
   display: flex;
+  flex-direction: column;
   min-height: 30rem;
   overflow: hidden;
   width: 80%;
 }
 
+.betting-app__main {
+  display: flex;
+  flex: 1;
+}
+
+/**
+ * Each main section contains a list of bets: either available bets
+ * or the user's selected bets. Each also has a set of controls for loading,
+ * clearing and submitting bets.
+ */
 .betting-app__main-section {
   background: linear-gradient(160deg, rgba($white, .5) 0, rgba($darkgrey, .35) 100%);
   display: flex;
@@ -39,48 +57,53 @@ body {
   flex: 1;
 }
 
+/**
+ * `.betting-app__main-section`: list of all available bets.
+ */
 .betting-app__bets {
   background-color: $brand-colour;
 }
-
+/**
+ * `.betting-app__main-section`: list of user's bets.
+ */
 .betting-app__slip {
   background-color: $white;
 }
 
+
+/**
+ * Actual list of bets.
+ */
 .bets {
   flex: 1;
 }
 
-.bet__loader {
-  margin: .5rem;
-  width: 100%;
-  height: 100%;
-}
-
-.bet__controls {
-  display: flex;
-  width: 100%;
-}
-
-.bet__control {
-  flex: 1;
-}
-
+/**
+ * Generic classes for individual bet wrappers.
+ */
 .bet {
   background-color: rgba($white, .9);
-  // border: 1px solid $brand-colour;
   border-radius: .25rem;
   box-shadow: 5px 5px 5px 0 rgba($black, .15);
-  margin: .5rem;
+  margin: 1rem;
   overflow: hidden;
   position: relative;
 }
 
+/**
+ * Actual text of bets - eg `bet on England to win the WC at 10-1` etc.
+ */
 .bet__text,
 .bet::after {
   padding: 1rem;
 }
 
+/**
+ * Styling for available bets - these have no interactive content, they
+ * are just selectable.
+ * NOTE: Most of the following code is for a shiny slide effect which
+ * in retrospect looks a bit crap.
+ */
 .bet--available {
   transition: all 350ms;
   font-style: italic;
@@ -107,6 +130,10 @@ body {
       transition: all 600ms;
     }
   }
+}
+
+.bet--submittable {
+  background-color: rgba($contrast-colour, .25);
 }
 
 .bet__reminder {

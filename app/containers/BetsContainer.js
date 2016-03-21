@@ -6,7 +6,9 @@ import { setSlipBet } from '../actions/slipBets'
 
 const mapStateToProps = (state) => {
   return {
-    bets: state.bets.filterNot((bet, betID) => state.slipBets.keySeq().includes(betID))
+    bets: state.bets.filterNot((bet, betID) => state.slipBets.keySeq().includes(betID)),
+    oddsFormat: state.oddsFormat,
+    status: state.status
   }
 }
 

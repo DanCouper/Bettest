@@ -1,35 +1,57 @@
-import { POST_BETS_REQUEST, POST_BETS_ERROR, POST_BETS_SUCCESS } from '../constants/actionTypes'
+import { POST_BET_REQUEST, POST_BET_ERROR, POST_BET_SUCCESS } from '../constants/actionTypes'
 import { checkStatus, parseJSON } from '../helpers'
 import 'whatwg-fetch'
 
-function postBetsRequest() {
+function postBetRequest(id) {
   return {
-    type: POST_BETS_REQUEST
+    type: POST_BET_REQUEST,
+    id
   }
+}
+
+/**
+ * The bets are held in the app state in the form of a Map.
+ * Convert to an array of objects, which can then be parsed to JSON for POSTing.
+ */
+function preparePostData(slipBets) {
+  return [...slipBets.keys()].map(betID => {
+    return {
+      'bet_id': slipBets.getIn([betID, 'bet_id']),
+      'odds': {
+        'numerator': slipBets.getIn([betID, 'odds', 'numerator']),
+        'denominator': slipBets.getIn([betID, 'odds', 'denominator'])
+      },
+      'stake': slipBets.getIn([betID, 'stake'])
+    }
+  })
 }
 
 export function postBets(bets, url = 'https://bedefetechtest.herokuapp.com/v1/bets') {
   return (dispatch) => {
-    dispatch(postBetsRequest)
-    for (let data of dataArray) {
-      return fetch(url, { method: 'post', body: JSON.stringify(bet) })
+    const betsArr = preparePostData(bets)
+    for (let bet of betsArr) {
+      let id = bet['bet_id']
+      dispatch(postBetRequest(id, postBetRequest))
+      return fetch(url, { method: 'post', headers: { 'Content-type': 'application/json' }, body: JSON.stringify(bet) })
             .then(checkStatus)
-            .then(response => dispatch(postBetsSuccess(JSON.parse(response))))
-            .catch(error => dispatch(postBetsError(error)))
+            .then(response => dispatch(postBetSuccess(id, response)))
+            .catch(error => dispatch(postBetError(id, error)))
     }
   }
 }
 
-export function postBetsError(message = 'Sorry, there was an error posting.') {
+export function postBetError(id, message = 'Sorry, there was an error posting.') {
   return {
-    type: POST_BETS_ERROR,
+    type: POST_BET_ERROR,
+    id,
     message
   }
 }
 
-export function postBetsSuccess(parsedResponse) {
+export function postBetSuccess(id, parsedResponse) {
   return {
-    type: POST_BETS_SUCCESS,
+    type: POST_BET_SUCCESS,
+    id,
     parsedResponse
   }
 }

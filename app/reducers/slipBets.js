@@ -1,5 +1,5 @@
 import Immutable from 'immutable'
-import { SET_SLIP_BET, UNSET_SLIP_BET, CLEAR_SLIP_BETS, SET_STAKE } from '../constants/actionTypes'
+import { SET_SLIP_BET, UNSET_SLIP_BET, CLEAR_SLIP_BETS, SET_STAKE, POST_BETS_SUCCESS } from '../constants/actionTypes'
 import { payoutCalculator } from '../helpers'
 
 function addSlipProps(betMap) {
@@ -14,6 +14,9 @@ export default function slipBets(state = Immutable.Map(), action) {
       return state.delete(action.id)
     case CLEAR_SLIP_BETS:
       return state.clear()
+    case POST_BETS_SUCCESS:
+      console.log('I am supposed to be deleting', action.id)
+      return state.delete(action.id)
     case SET_STAKE:
       const num = state.getIn([action.id, 'odds', 'numerator'])
       const den = state.getIn([action.id, 'odds', 'denominator'])

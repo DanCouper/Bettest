@@ -4,6 +4,21 @@ This is a small React app that allows a user to view available bets, add possibl
 
 ## Notes *re* brief
 
+Error handling is nonexistant at the minute: the responses are there, but I ran out of time. There is no validation on the inputs, so any old crap can be submitted.
+
+Re submitting a bet: I changed the logic and data structure to allow a number of bets to be submitted (one by one) at once. So each bet needs the `set stake` button to be pressed so that the stake is actually written into the state. Note triggering `onBlur` on an input will automatically write the value to the state.
+
+Changing the logic caused the submission logic to fail; I was halfway through rewiriting and had to stop due to time constraints - it should iterate throught the bets on the slip and submit them one after the other, but it doesn't.
+
+Getting a `null` response body from successful POST requests from the server; can't get a usable response, which means the bet history is unavailable.
+
+
+### TODO
+
+* Review markup & CSS class naming.
+* Redo design as responsive.
+* Add React `CSSTransitionGroup` helpers to allow transitions when state updated.
+
 ### Deps
 
 - [React](https://facebook.github.io/react/)
