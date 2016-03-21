@@ -15,7 +15,6 @@ export default function slipBets(state = Immutable.Map(), action) {
     case CLEAR_SLIP_BETS:
       return state.clear()
     case POST_BETS_SUCCESS:
-      console.log('I am supposed to be deleting', action.id)
       return state.delete(action.id)
     case SET_STAKE:
       const num = state.getIn([action.id, 'odds', 'numerator'])

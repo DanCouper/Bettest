@@ -5,7 +5,7 @@ export default function Slip({ slipBets, oddsFormat, onUnsetSlipBetClick, onClea
   return (
     <section className="betting-app__main-section betting-app__slip">
       <ul className="bets">
-      { slipBets.size === 0 ? (<li className="bet">No bets on your slip.</li>)
+      { slipBets.size === 0 ? (<li className="notabet"><p>No bets on your slip.</p></li>)
                             : slipBets.keySeq().map(betID => (
         <SlipBet
           key={ betID }

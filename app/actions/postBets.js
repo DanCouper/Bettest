@@ -29,9 +29,10 @@ function preparePostData(slipBets) {
 export function postBets(bets, url = 'https://bedefetechtest.herokuapp.com/v1/bets') {
   return (dispatch) => {
     const betsArr = preparePostData(bets)
+
     for (let bet of betsArr) {
       let id = bet['bet_id']
-      dispatch(postBetRequest(id, postBetRequest))
+      dispatch(postBetRequest(id))
       return fetch(url, { method: 'post', headers: { 'Content-type': 'application/json' }, body: JSON.stringify(bet) })
             .then(checkStatus)
             .then(response => dispatch(postBetSuccess(id, response)))

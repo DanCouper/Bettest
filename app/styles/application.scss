@@ -74,8 +74,16 @@ body {
 /**
  * Actual list of bets.
  */
-.bets {
+.bets,
+.notabet {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.notabet {
+  align-items: center;
+  justify-content: center;
 }
 
 /**

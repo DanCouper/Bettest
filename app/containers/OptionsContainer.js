@@ -5,7 +5,8 @@ import Options from '../components/Options'
 
 const mapStateToProps = (state) => {
   return {
-    oddsFormat: state.oddsFormat
+    oddsFormat: state.oddsFormat,
+    postedBets: state.postedBets
   }
 }
 
