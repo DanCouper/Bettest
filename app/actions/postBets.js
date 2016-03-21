@@ -1,5 +1,6 @@
 import { POST_BET_REQUEST, POST_BET_ERROR, POST_BET_SUCCESS } from '../constants/actionTypes'
 import { checkStatus, parseJSON } from '../helpers'
+import { unsetSlipBet } from './slipBets'
 import 'whatwg-fetch'
 
 function postBetRequest(id) {
@@ -35,7 +36,10 @@ export function postBets(bets, url = 'https://bedefetechtest.herokuapp.com/v1/be
       dispatch(postBetRequest(id))
       return fetch(url, { method: 'post', headers: { 'Content-type': 'application/json' }, body: JSON.stringify(bet) })
             .then(checkStatus)
-            .then(response => dispatch(postBetSuccess(id, response)))
+            .then(response => {
+              dispatch(postBetSuccess(id, response))
+              dispatch(unsetSlipBet(id))
+            })
             .catch(error => dispatch(postBetError(id, error)))
     }
   }
