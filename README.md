@@ -21,7 +21,7 @@ This is a small React app that allows a user to view available bets, add possibl
 Do keep the console open while you're in the app: `redux-logger` has been left in, so there is a full stream logging the state at every point before and after every action. The state tree is fully described at every point, so you can drill down into any part of it.
 
 * I can't get any values bar the `transaction_id` from the `postedBets` Map. I don't know why, as the object looks and queries properly. This means each receipt in the history has undefined for all values bar the transaction ID.
-* The errors are a hackjob; there is a `Flash` component that renders out based on status, but the logic is primitve and it's effectively hardcoded. All works, but in no way clean/elegant.
+* The errors are a hackjob; there is a `Flash` component that renders out based on status, but the logic is primitive, and it's effectively hardcoded. All works, but in no way clean/elegant.
 * POST request responses are coming back with `null` bodies rather than the receipt objects specified in the brief. For this reason, the responses have been faked in `actions/postBets.js` to match those specified.
 * The `CSSTransitionGroup` React addon has not been included at this point; this would allow easy implementation of smooth transitioning between states, but I didn't have time to set it up.
 
