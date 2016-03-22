@@ -14,16 +14,14 @@ function preparePostData(slipBets) {
   })
 }
 
-function normaliseAndPetrify(bet) {
-  return Immutable.fromJS({ [bet['bet_id']]: bet})
-}
-
 export default function postedBets(state = Immutable.Map(), action) {
   switch(action.type) {
     case POST_BET_REQUEST:
       return state
     case POST_BET_SUCCESS:
-      return state.merge(normaliseAndPetrify(action.parsedResponse))
+      console.log(JSON.stringify(action.parsedResponse))
+      const mapID = action.parsedResponse['transaction_id']
+      return state.set(mapID, Immutable.Map(action.parsedResponse))
     case POST_BET_ERROR:
       return state
     default:

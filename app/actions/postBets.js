@@ -1,4 +1,4 @@
-import { POST_BET_REQUEST, POST_BET_ERROR, POST_BET_SUCCESS } from '../constants/actionTypes'
+import { POST_BET_REQUEST, POST_BET_ERROR, POST_BET_SUCCESS, POST_BET_REQUEST_COMPLETE } from '../constants/actionTypes'
 import { checkStatus, parseJSON } from '../helpers'
 import { unsetSlipBet } from './slipBets'
 import 'whatwg-fetch'
@@ -37,7 +37,11 @@ export function postBets(bets, url = 'https://bedefetechtest.herokuapp.com/v1/be
       return fetch(url, { method: 'post', headers: { 'Content-type': 'application/json' }, body: JSON.stringify(bet) })
             .then(checkStatus)
             .then(response => {
-              dispatch(postBetSuccess(id, response))
+              // dispatch(postBetSuccess(id, response))
+              // NOTE: not body for success/error, just faking the response
+              const fakeResponse = { ...bet, transaction_id: `${Math.floor(Math.random() * (9999 - 1000)) + 1000}` }
+              console.log(fakeResponse)
+              dispatch(postBetSuccess(id, fakeResponse))
               dispatch(unsetSlipBet(id))
             })
             .catch(error => dispatch(postBetError(id, error)))

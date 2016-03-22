@@ -6,8 +6,9 @@ import { postBets } from '../actions/postBets'
 
 const mapStateToProps = (state) => {
   return {
+    oddsFormat: state.oddsFormat,
     slipBets: state.slipBets,
-    oddsFormat: state.oddsFormat
+    status: state.status
   }
 }
 

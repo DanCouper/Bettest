@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,400italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Fira+Mono:400,700);
 @import "reset";
 @import "variables";
 @import "mixins";
@@ -150,3 +151,69 @@ body {
   opacity: .5;
 }
 
+.posted-bets__dropdown {
+  background-color: $contrast-colour;
+  box-shadow: 5px 5px 5px 0 rgba($darkergrey, .25);
+  color: rgba(white, .75);
+  font-family: $mono-font-family;
+  font-size: $tiny-font-size;
+  letter-spacing: 0.1em;
+  padding: 1rem;
+  position: absolute;
+  right: 0;
+  text-transform: uppercase;
+  top: 100%;
+  z-index: 3;
+}
+
+// TODO: transition
+.posted-bets__dropdown--hidden {
+  display: none;
+}
+
+.posted-bets__dropdown--visible {
+  display: block;
+}
+
+.posted-bets__header {
+  border-bottom: 1px dotted currentColor;
+  color: rgba(white, .5);
+  margin-bottom: 1rem;
+}
+
+.posted-bet {
+  border-bottom: 1px dotted currentColor;
+  margin-bottom: .5rem;
+  padding: .5rem 0;
+}
+
+/**
+ * FIXME: Very, very hacky show/hide for flash.
+ */
+.flash {
+  animation: 3s ease-in-out 0s flash;
+  border-radius: .25rem;
+  box-shadow: 5px 5px 5px 0 rgba($black, .15);
+  margin: .5rem;
+  opacity: 0;
+  padding: 1rem;
+  text-align: center;
+  transform: scale(0);
+}
+
+.flash--success {
+  background-color: $contrast-colour;
+  color: mix($black, $contrast-colour);
+}
+
+.flash--error {
+  background-color: $warning-colour;
+  color: mix($black, $warning-colour);
+}
+
+@keyframes flash {
+  0%   { transform: scale(0); opacity: 0; }
+  20%  { transform: scale(1); opacity: 1; }
+  80%  { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
