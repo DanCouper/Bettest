@@ -6,7 +6,6 @@ import { oddsFormatter, payoutCalculator } from '../helpers'
  * All the rest return undefined values; the values are there, I can see them if I inspect
  * the state, but they aren't rendering out.
  */
-
 export default function PostedBet({ oddsFormat, postedBet }) {
   return (
     <li className="posted-bet">
