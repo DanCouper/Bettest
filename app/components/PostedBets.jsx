@@ -1,4 +1,4 @@
-import React from 'React'
+import React from 'react'
 import PostedBet from './PostedBet'
 
 export default function PostedBets({ dropdownVisible, postedBets, oddsFormat }) {

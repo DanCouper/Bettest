@@ -19,7 +19,6 @@ export default function postedBets(state = Immutable.Map(), action) {
     case POST_BET_REQUEST:
       return state
     case POST_BET_SUCCESS:
-      console.log(JSON.stringify(action.parsedResponse))
       const mapID = action.parsedResponse['transaction_id']
       return state.set(mapID, Immutable.Map(action.parsedResponse))
     case POST_BET_ERROR:
